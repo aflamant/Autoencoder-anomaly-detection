@@ -17,8 +17,6 @@ ap.add_argument("-a", "--anomaly", required=True,
                 help="kind of anomaly to test")
 ap.add_argument("-l", "--ports", required=True,
                 help="list of ports considered by the network")
-ap.add_argument('-t', '--threshold', required=True,
-                help='reconstruction error threshold for anomalies')
 
 args = vars(ap.parse_args())
 
