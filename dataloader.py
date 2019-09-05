@@ -4,7 +4,7 @@ from sklearn import preprocessing
 
 
 def load_data(traffic_type, path,
-              rows=100000, skip=0, most_common_ports=None):
+              rows=None, skip=0, most_common_ports=None):
     filename = path + traffic_type + ".csv"
     print("Loading data from %s... (this might take a while)" % filename)
     data = pd.read_csv(filename, sep=',', skiprows=range(1, skip), nrows=rows, skipinitialspace=True)
@@ -24,12 +24,6 @@ def load_data(traffic_type, path,
     data = scaler.fit_transform(data)
 
     data = np.hstack((port_dummies, data))
-
-    # Remove infinite and nan values
-    # x_train = x_train[~np.isnan(x_train).any(axis=1)]
-    # x_train = x_train[np.isfinite(x_train).all(axis=1)]
-    # x_test = x_test[~np.isnan(x_test).any(axis=1)]
-    # x_test = x_test[np.isfinite(x_test).all(axis=1)]
 
     return {'data': data, 'most_common_ports': values}
 
